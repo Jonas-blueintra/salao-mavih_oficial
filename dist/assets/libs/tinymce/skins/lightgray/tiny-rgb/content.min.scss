@@ -1,0 +1,424 @@
+@import "content";
+
+@mixin tag($content : ''){
+	box-sizing: border-box;
+	position: relative;
+	background-image: none !important;
+	border-color: #ff6600 !important;
+	padding: 10px 5px 5px 5px !important;
+	margin: 10px 0 !important;
+	overflow: auto;
+	&:before{
+		content: $content;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		color: #ffffff;
+		background-color: #ff6600;
+		text-transform: uppercase;
+		font-size: 9px;
+		line-height: 1;
+		padding: 2px 5px;
+		border-bottom: 1px dashed #ff6600;
+		border-right: 1px dashed #ff6600;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+.mce-visualblocks{
+	a{
+		color: #00f;
+		text-decoration: underline;
+		&.botao{
+			display: inline-block;
+			padding: 5px 10px;
+			border: 1px solid #bbbbbb;
+			border-radius: 4px;
+			&.primario{
+				background-color: #bbbbbb;
+				color: #ffffff;
+			}
+		}
+	}
+
+	h1, h2, h3, h4, h5, h6{
+		font-weight: normal;
+		b, strong{
+			font-weight: bold;
+		}
+	}
+
+	div.linha{
+		clear: both;
+		@include tag('linha responsiva');
+	}
+
+	div.colunas{
+		float: left;
+		width: 100%;
+
+		//
+
+		img{
+			max-width: 100%;
+			height: auto;
+		}
+
+		//
+
+		&.uma{
+			width: 8.33333%;
+			@include tag('uma');
+		}
+		&.duas{
+			width: 16.66666%;
+			@include tag('duas');
+		}
+		&.tres{
+			width: 25%;
+			@include tag('tres');
+		}
+		&.quatro{
+			width: 33.33333%;
+			@include tag('quatro')
+		}
+		&.cinco{
+			width: 41.66666%;
+			@include tag('cinco')
+		}
+		&.seis{
+			width: 50%;
+			@include tag('seis')
+		}
+		&.sete{
+			width: 58.33333%;
+			@include tag('sete')
+		}
+		&.oito{
+			width: 66.66666%;
+			@include tag('oito')
+		}
+		&.nove{
+			width: 75%;
+			@include tag('nove')
+		}
+		&.dez{
+			width: 83.33333%;
+			@include tag('dez')
+		}
+		&.onze{
+			width: 91.66666%;
+			@include tag('onze')
+		}
+		&.doze{
+			width: 100%;
+			@include tag('doze')
+		}
+
+		//
+
+		&.mobile-uma{
+			width: 8.33333%;
+			@include tag('mobile-uma');
+		}
+		&.mobile-duas{
+			width: 16.66666%;
+			@include tag('mobile-duas');
+		}
+		&.mobile-tres{
+			width: 25%;
+			@include tag('mobile-tres');
+		}
+		&.mobile-quatro{
+			width: 33.33333%;
+			@include tag('mobile-quatro')
+		}
+		&.mobile-cinco{
+			width: 41.66666%;
+			@include tag('mobile-cinco')
+		}
+		&.mobile-seis{
+			width: 50%;
+			@include tag('mobile-seis')
+		}
+		&.mobile-sete{
+			width: 58.33333%;
+			@include tag('mobile-sete')
+		}
+		&.mobile-oito{
+			width: 66.66666%;
+			@include tag('mobile-oito')
+		}
+		&.mobile-nove{
+			width: 75%;
+			@include tag('mobile-nove')
+		}
+		&.mobile-dez{
+			width: 83.33333%;
+			@include tag('mobile-dez')
+		}
+		&.mobile-onze{
+			width: 91.66666%;
+			@include tag('mobile-onze')
+		}
+		&.mobile-doze{
+			width: 100%;
+			@include tag('mobile-doze')
+		}
+
+		//
+
+		&.phablet-uma{
+			width: 8.33333%;
+			@include tag('phablet-uma')
+		}
+		&.phablet-duas{
+			width: 16.66666%;
+			@include tag('phablet-duas')
+		}
+		&.phablet-tres{
+			width: 25%;
+			@include tag('phablet-tres')
+		}
+		&.phablet-quatro{
+			width: 33.33333%;
+			@include tag('phablet-quatro')
+		}
+		&.phablet-cinco{
+			width: 41.66666%;
+			@include tag('phablet-cinco')
+		}
+		&.phablet-seis{
+			width: 50%;
+			@include tag('phablet-seis')
+		}
+		&.phablet-sete{
+			width: 58.33333%;
+			@include tag('phablet-sete')
+		}
+		&.phablet-oito{
+			width: 66.66666%;
+			@include tag('phablet-oito')
+		}
+		&.phablet-nove{
+			width: 75%;
+			@include tag('phablet-nove')
+		}
+		&.phablet-dez{
+			width: 83.33333%;
+			@include tag('phablet-dez')
+		}
+		&.phablet-onze{
+			width: 91.66666%;
+			@include tag('phablet-onze')
+		}
+		&.phablet-doze{
+			width: 100%;
+			@include tag('phablet-doze')
+		}
+
+		//
+
+		&.tablet-uma{
+			width: 8.33333%;
+			@include tag('tablet-uma')
+		}
+		&.tablet-duas{
+			width: 16.66666%;
+			@include tag('tablet-duas')
+		}
+		&.tablet-tres{
+			width: 25%;
+			@include tag('tablet-tres')
+		}
+		&.tablet-quatro{
+			width: 33.33333%;
+			@include tag('tablet-quatro')
+		}
+		&.tablet-cinco{
+			width: 41.66666%;
+			@include tag('tablet-cinco')
+		}
+		&.tablet-seis{
+			width: 50%;
+			@include tag('tablet-seis')
+		}
+		&.tablet-sete{
+			width: 58.33333%;
+			@include tag('tablet-sete')
+		}
+		&.tablet-oito{
+			width: 66.66666%;
+			@include tag('tablet-oito')
+		}
+		&.tablet-nove{
+			width: 75%;
+			@include tag('tablet-nove')
+		}
+		&.tablet-dez{
+			width: 83.33333%;
+			@include tag('tablet-dez')
+		}
+		&.tablet-onze{
+			width: 91.66666%;
+			@include tag('tablet-onze')
+		}
+		&.tablet-doze{
+			width: 100%;
+			@include tag('tablet-doze')
+		}
+
+		//
+
+		&.desktop-uma{
+			width: 8.33333%;
+			@include tag('desktop-uma')
+		}
+		&.desktop-duas{
+			width: 16.66666%;
+			@include tag('desktop-duas')
+		}
+		&.desktop-tres{
+			width: 25%;
+			@include tag('desktop-tres')
+		}
+		&.desktop-quatro{
+			width: 33.33333%;
+			@include tag('desktop-quatro')
+		}
+		&.desktop-cinco{
+			width: 41.66666%;
+			@include tag('desktop-cinco')
+		}
+		&.desktop-seis{
+			width: 50%;
+			@include tag('desktop-seis')
+		}
+		&.desktop-sete{
+			width: 58.33333%;
+			@include tag('desktop-sete')
+		}
+		&.desktop-oito{
+			width: 66.66666%;
+			@include tag('desktop-oito')
+		}
+		&.desktop-nove{
+			width: 75%;
+			@include tag('desktop-nove')
+		}
+		&.desktop-dez{
+			width: 83.33333%;
+			@include tag('desktop-dez')
+		}
+		&.desktop-onze{
+			width: 91.66666%;
+			@include tag('desktop-onze')
+		}
+		&.desktop-doze{
+			width: 100%;
+			@include tag('desktop-doze')
+		}
+
+		//
+
+		&.desktop-hd-uma{
+			width: 8.33333%;
+			@include tag('desktop-hd-uma')
+		}
+		&.desktop-hd-duas{
+			width: 16.66666%;
+			@include tag('desktop-hd-duas')
+		}
+		&.desktop-hd-tres{
+			width: 25%;
+			@include tag('desktop-hd-tres')
+		}
+		&.desktop-hd-quatro{
+			width: 33.33333%;
+			@include tag('desktop-hd-quatro')
+		}
+		&.desktop-hd-cinco{
+			width: 41.66666%;
+			@include tag('desktop-hd-cinco')
+		}
+		&.desktop-hd-seis{
+			width: 50%;
+			@include tag('desktop-hd-seis')
+		}
+		&.desktop-hd-sete{
+			width: 58.33333%;
+			@include tag('desktop-hd-sete')
+		}
+		&.desktop-hd-oito{
+			width: 66.66666%;
+			@include tag('desktop-hd-oito')
+		}
+		&.desktop-hd-nove{
+			width: 75%;
+			@include tag('desktop-hd-nove')
+		}
+		&.desktop-hd-dez{
+			width: 83.33333%;
+			@include tag('desktop-hd-dez')
+		}
+		&.desktop-hd-onze{
+			width: 91.66666%;
+			@include tag('desktop-hd-onze')
+		}
+		&.desktop-hd-doze{
+			width: 100%;
+			@include tag('desktop-hd-doze')
+		}
+	}
+
+	div.rgb-container.linha {
+		clear: both;
+		@include tag('container personalizado');
+	}
+
+	div.rgb-lightbox {
+		clear: both;
+		@include tag('lightbox ['attr(id)']');
+	}
+
+	span.rgb-link-lightbox{
+		color: #00f;
+		border: 1px dashed #00f;
+		padding: 0 2px;
+	}
+
+	.full-width{
+		width: 100%;
+	}
+
+	.rgb-incorporar-media-container {
+		@include tag('Media incorporada');
+
+		.rgb-incorporar-media {
+			max-width: 100%;
+			margin: 0 auto;
+			position: relative;
+		}
+
+		.rgb-incorporar-media-inner {
+			position: relative;
+			z-index: 9;
+
+			* {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 10;
+			}
+		}
+
+		&.is-full-width {
+			.rgb-incorporar-media {
+				width: 100% !important;
+			}
+		}
+	}
+}

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+#mainContainer {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s;
+}
+
+#mainContainer.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efeito bonito no ícone */
+.icon-glow {
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.5);
+}
