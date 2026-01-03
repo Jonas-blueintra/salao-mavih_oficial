@@ -106,7 +106,7 @@ class Login extends CI_Controller
 
   public function cadastrar_usuario()
     {
-        $config['upload_path'] = './uploads/usuarios/';
+        $config['upload_path'] = './uploads/admin/';
         $config['allowed_types'] = 'jpg|jpeg|png';
         $config['max_size'] = 2048; // 2MB
         $config['encrypt_name'] = true; // gera nome aleatório
