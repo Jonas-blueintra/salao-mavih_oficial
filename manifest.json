@@ -1,0 +1,20 @@
+{
+  "name": "Salão Mavih",
+  "short_name": "Mavih",
+  "start_url": "/login",
+  "display": "standalone",
+  "background_color": "#5A1F2D",
+  "theme_color": "#5A1F2D",
+  "icons": [
+    {
+      "src": "/splash_icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/splash_icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -6,17 +6,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login - Sistema</title>
+  <title>Login - Salão Mavih</title>
 
-  <!-- Bootstrap CSS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- PWA / Android -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#5A1F2D">
+
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Salão Mavih">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Bootstrap Ícones -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-
 </head>
+
 
 <body class="bg-primary bg-gradient">
 
@@ -79,6 +84,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a href="<?= base_url('login/primeiro_acesso'); ?>" class="btn btn-light text-primary">
                   <i class="bi bi-person-plus"></i> Primeiro Acesso
                 </a>
+                <div id="android-install" style="display:none">
+                  <a href="https://www.mavihstudio.com.br/app/app-release.apk" style="
+    display:inline-block;
+    padding:14px 20px;
+    background:#5A1F2D;
+    color:#fff;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+  ">
+                    📲 Baixar App Android
+                  </a>
+                </div>
+                <div id="ios-install" style="display:none;padding:15px;background:#f8f8f8">
+                  <strong>📲 Instalar App no iPhone</strong><br><br>
+                  1️⃣ Toque em <strong>Compartilhar</strong><br>
+                  2️⃣ Escolha <strong>Adicionar à Tela de Início</strong>
+                </div>
+
               </div>
             </div>
           </form>
@@ -99,9 +123,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-   console.log("LOGIN.JS CARREGADO");
-console.log(typeof $);
-console.log(typeof jQuery);
+    console.log("LOGIN.JS CARREGADO");
+    console.log(typeof $);
+    console.log(typeof jQuery);
 
     $(document).ready(function () {
 
@@ -120,71 +144,71 @@ console.log(typeof jQuery);
         let formData = new FormData(this);
         let button = btnLogin;
 
-    $.ajax({
-  url: form.attr('action'),
-  data: formData,
-  type: 'POST',
-  cache: false,
-  contentType: false,
-  processData: false,
-  dataType: "json",
+        $.ajax({
+          url: form.attr('action'),
+          data: formData,
+          type: 'POST',
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "json",
 
-  beforeSend: function () {
-    form.addClass('enviando');
-    button.prop('disabled', true);
-    btnText.text("Entrando...");
-    btnSpinner.removeClass("d-none");
-  },
+          beforeSend: function () {
+            form.addClass('enviando');
+            button.prop('disabled', true);
+            btnText.text("Entrando...");
+            btnSpinner.removeClass("d-none");
+          },
 
-  error: function (xhr) {
-    console.log("STATUS:", xhr.status);
-    console.log("HEADERS:", xhr.getAllResponseHeaders());
-    console.log("RESPOSTA ERRO:", xhr.responseText);
+          error: function (xhr) {
+            console.log("STATUS:", xhr.status);
+            console.log("HEADERS:", xhr.getAllResponseHeaders());
+            console.log("RESPOSTA ERRO:", xhr.responseText);
 
-    Swal.fire({
-      title: "Erro",
-      text: "Erro na requisição. Tente novamente.",
-      icon: "error"
-    });
-  },
+            Swal.fire({
+              title: "Erro",
+              text: "Erro na requisição. Tente novamente.",
+              icon: "error"
+            });
+          },
 
-  success: function (json) {
+          success: function (json) {
 
-    let type = 'error';
-    let tag = 'Ops!';
+            let type = 'error';
+            let tag = 'Ops!';
 
-    if (json.error === '0') {
-      type = 'success';
-      tag = 'Bem-vindo!';
-    }
+            if (json.error === '0') {
+              type = 'success';
+              tag = 'Bem-vindo!';
+            }
 
-    if (json.error === '0') {
-      Swal.fire({
-        title: tag + ' ' + json.data.nome,
-        text: json.msg,
-        icon: type,
-        timer: 1200,
-        showConfirmButton: false,
-        willClose: () => {
-          window.location.href = json.redirencionar_pagina;
-        }
-      });
-    } else {
-      Swal.fire({
-        title: tag,
-        text: json.msg,
-        icon: type
-      });
-    }
-  },
+            if (json.error === '0') {
+              Swal.fire({
+                title: tag + ' ' + json.data.nome,
+                text: json.msg,
+                icon: type,
+                timer: 1200,
+                showConfirmButton: false,
+                willClose: () => {
+                  window.location.href = json.redirencionar_pagina;
+                }
+              });
+            } else {
+              Swal.fire({
+                title: tag,
+                text: json.msg,
+                icon: type
+              });
+            }
+          },
 
-  complete: function () {
-    form.removeClass('enviando');
-    button.prop('disabled', false);
-    btnText.text(originalBtnText);
-    btnSpinner.addClass("d-none");
-  }
-});
+          complete: function () {
+            form.removeClass('enviando');
+            button.prop('disabled', false);
+            btnText.text(originalBtnText);
+            btnSpinner.addClass("d-none");
+          }
+        });
 
         return false;
       });
@@ -192,7 +216,7 @@ console.log(typeof jQuery);
     });
 
 
-const toggleSenha = document.getElementById("toggleSenha");
+    const toggleSenha = document.getElementById("toggleSenha");
     const inputSenha = document.getElementById("senha");
     const icon = toggleSenha.querySelector("i");
 
@@ -203,7 +227,20 @@ const toggleSenha = document.getElementById("toggleSenha");
       icon.classList.toggle("bi-eye");
       icon.classList.toggle("bi-eye-slash");
     });
- 
+
+
+    const ua = navigator.userAgent.toLowerCase();
+    const isIOS = /iphone|ipad|ipod/.test(ua);
+    const isAndroid = /android/.test(ua);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (isIOS) {
+        document.getElementById("ios-install").style.display = "block";
+      }
+      if (isAndroid) {
+        document.getElementById("android-install").style.display = "block";
+      }
+    });
   </script>
 
 </body>
