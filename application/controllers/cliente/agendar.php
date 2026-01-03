@@ -30,14 +30,14 @@ class Agendar extends CI_Controller
         $data["servico"] = $this->Servicos_model->servico($id);
         $this->load->view("cliente\pages\agendar_horarios", $data);
     }
-     public function cancelar_agenda($id)
+    public function cancelar_agenda($id)
     {
         $motivo = $this->input->get('motivo');
         $quem_cancelou = $this->input->get('quem_cancelou');
 
-        $result = $this->agenda_model->cancelar_status_agenda($id, $motivo,$quem_cancelou);
+        $result = $this->agenda_model->cancelar_status_agenda($id, $motivo, $quem_cancelou);
         $output = $this->crud->response($result->susses, $result->message);
-         ob_clean();
+        ob_clean();
         return $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
     public function horarios_por_dia()
@@ -48,8 +48,8 @@ class Agendar extends CI_Controller
         $duracaoStr = $this->input->get("duracao"); // agora recebe "01:20"
 
         if (!$id_dia || !$duracaoStr) {
-            echo json_encode(["erro" => "Parâmetros inválidos"]);
-            return;
+
+            return Result::error("Parâmetros inválidos");
         }
 
         // Converter formato "HH:MM" para minutos
@@ -64,6 +64,7 @@ class Agendar extends CI_Controller
         $dia = $this->db->get_where("horarios_funcionamento", ["id" => $id_dia])->row();
 
         if (!$dia || $dia->abre == "fechado" || $dia->fecha == "fechado") {
+
             echo json_encode(["horarios" => []]);
             return;
         }
@@ -75,7 +76,7 @@ class Agendar extends CI_Controller
         $intervalo = 40 * 60; // 40 minutos
 
         // Buscar horários ocupados daquele dia COM duração do serviço
-       
+
 
         $horariosLivres = [];
 
@@ -86,11 +87,18 @@ class Agendar extends CI_Controller
 
             // Verificar conflitos corretamente
             $this->db->where("data", $data);
+
+            // só horários que NÃO estão cancelados
+            $this->db->where("status !=", "cancelado");
+
             $this->db->where("
-        (STR_TO_DATE(hora_inicio, '%H:%i') < STR_TO_DATE('" . date("H:i", $fim_novo) . "', '%H:%i'))
-        AND
-        (STR_TO_DATE(hora_fim, '%H:%i') > STR_TO_DATE('" . date("H:i", $inicio_novo) . "', '%H:%i'))
-    ");
+         (
+           STR_TO_DATE(hora_inicio, '%H:%i') < STR_TO_DATE('" . date("H:i", $fim_novo) . "', '%H:%i')
+           AND
+           STR_TO_DATE(hora_fim, '%H:%i') > STR_TO_DATE('" . date("H:i", $inicio_novo) . "', '%H:%i')
+         )
+         ", null, false);
+
 
             $ocupado = $this->db->get("agenda")->row();
 
@@ -110,7 +118,7 @@ class Agendar extends CI_Controller
 
             $h = $fim_novo;
         }
-                ob_clean();
+        ob_clean();
         echo json_encode([
             "data" => $data,
             "horarios" => $horariosLivres
@@ -163,18 +171,18 @@ class Agendar extends CI_Controller
             'data' => $this->input->post('data'),
             'hora_inicio' => $hora_inicio,
             'hora_fim' => $hora_fim,
-            'data_cadastro_agenda' =>$DataHora_cadastro->format('d-m-Y H:i:s'),
+            'data_cadastro_agenda' => $DataHora_cadastro->format('d-m-Y H:i:s'),
         ];
-         $id = $this->session->userdata('id');
+        $id = $this->session->userdata('id');
         $insert = $this->global_model->insert('agenda', $dados);
         $this->notificacao_model->novo_agendamento($this->session->userdata('id'));
         if ($insert) {
             $output = $this->crud->response(true, "Horarios agendado com sucesso!");
-                ob_clean();
+            ob_clean();
             return $this->output->set_content_type('application/json')->set_output(json_encode($output));
         } else {
             $output = $this->crud->response(false, "Algo Deu Errado Entre em Contato com a Responsavel!");
-                ob_clean();
+            ob_clean();
             return $this->output->set_content_type('application/json')->set_output(json_encode($output));
 
         }
