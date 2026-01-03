@@ -13,13 +13,101 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <?php $this->load->view('links_style_login/links_css') ?>
+  <style>
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#fff0f6,#fff);
+  min-height:130vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, #ffd6e8 0, transparent 45%),
+    radial-gradient(circle at 80% 80%, #ffeaf4 0, transparent 45%);
+  animation:bgMove 14s infinite alternate;
+  z-index:0;
+}
+
+@keyframes bgMove{
+  from{transform:scale(1)}
+  to{transform:scale(1.12)}
+}
+
+/* CARD */
+.card{
+  position:relative;
+  z-index:1;
+  max-width:560px;
+  margin:140px auto;
+  padding:36px 30px!important;
+  border-radius:42px!important;
+  background:linear-gradient(180deg,#ffffff,#fff5fa);
+  box-shadow:0 35px 90px rgba(255,79,139,.30)!important;
+  animation:fadeUp .8s ease;
+  border:none!important;
+  
+}
+
+/* ENTRADA */
+.form-control,.form-select{
+  border-radius:999px!important;
+  border:1px solid #f4bfd3!important;
+  padding:14px 20px!important;
+}
+
+.form-control:focus,.form-select:focus{
+  border-color:#ff4f8b;
+  box-shadow:0 0 0 .25rem rgba(255,79,139,.25);
+}
+
+/* TITULO */
+h3{
+  color:#b02a6b!important;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+
+/* BOTÃO */
+.btn-usuario{
+  margin-top:14px;
+  background:linear-gradient(135deg,#ff5fa2,#b02a6b)!important;
+  border:none!important;
+  border-radius:999px!important;
+  padding:14px!important;
+  font-weight:600;
+  letter-spacing:.5px;
+  box-shadow:0 18px 40px rgba(255,79,139,.5)!important;
+  transition:.35s;
+}
+
+.btn-usuario:hover{
+  transform:translateY(-4px) scale(1.02);
+}
+
+/* LINKS */
+a{color:#b02a6b!important}
+a:hover{color:#ff4f8b!important}
+
+
+
+</style>
+
 </head>
 
 <body class="body_usuario">
 
-  <div class="card shadow p-4" style="max-width: 550px; width: 100%; margin: 40px auto;">
-    <h3 class="text-center mb-3 text-primary"><i class="bi bi-person-plus"></i> Cadastro de Usuário</h3>
+ <div class="card">
+    <h3 class="text-center mb-3"><i class="bi bi-person-plus"></i> Cadastro de Usuário</h3>
     <p class="text-center text-muted mb-4">Preencha os dados abaixo para criar seu acesso.</p>
 
     <!-- NOTICE: id added aqui para compatibilidade -->
@@ -87,7 +175,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </form>
 
     <div class="text-center mt-3">
-      <a href="<?php echo base_url('login') ?>" class="text-primary">Já tem conta? Fazer login</a>
+      <a href="<?php echo base_url('login') ?>">Já tem conta? Fazer login</a>
     </div>
   </div>
 
