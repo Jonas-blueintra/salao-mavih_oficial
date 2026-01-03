@@ -328,6 +328,16 @@ $logo = $this->global_model->get('tela_cliente', 1, true);
   color:#fff;
   transform:translateY(-3px);
 }
+#toggleSenha{
+  border-radius:999px;
+  border:1px solid #f4c2d7;
+  background:#fff;
+  color:#b02a6b;
+}
+
+#toggleSenha:hover{
+  background:#ffe3ef;
+}
 
 </style>
 
@@ -448,6 +458,25 @@ $logo = $this->global_model->get('tela_cliente', 1, true);
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+const toggleSenha = document.getElementById("toggleSenha");
+const inputSenha  = document.getElementById("senha");
+const iconSenha   = toggleSenha.querySelector("i");
+
+toggleSenha.addEventListener("click", function () {
+  if (inputSenha.type === "password") {
+    inputSenha.type = "text";
+    iconSenha.classList.remove("bi-eye");
+    iconSenha.classList.add("bi-eye-slash");
+  } else {
+    inputSenha.type = "password";
+    iconSenha.classList.remove("bi-eye-slash");
+    iconSenha.classList.add("bi-eye");
+  }
+});
+
+
+
+
     function toggleIOSInstall() {
       const el = document.getElementById("ios-steps");
       const body = document.body;
@@ -470,11 +499,6 @@ $logo = $this->global_model->get('tela_cliente', 1, true);
     if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
       esconderInstalacao();
     }
-
-    console.log("LOGIN.JS CARREGADO");
-    console.log(typeof $);
-    console.log(typeof jQuery);
-
     $(document).ready(function () {
 
       const form = $("form.form-ajax");
