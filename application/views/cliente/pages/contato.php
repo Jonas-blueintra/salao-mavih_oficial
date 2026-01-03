@@ -197,7 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <!-- MAPA -->
         <div class="mt-5">
-            <iframe src="https://www.google.com/maps?q=Rua%20Exemplo%20123%20Centro&output=embed" width="100%"
+            <iframe src="https://maps.google.com/maps?q=Rua Cinco de Junho, 68 - Chácara Lago&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%"
                 height="320" allowfullscreen="" loading="lazy">
             </iframe>
         </div>
