@@ -645,4 +645,4 @@ if ($tem_agenda) {
         </div>
     </div>
 </nav>
-<a class="whatsapp" href="#"><i class="bi bi-whatsapp"></i></a>
+<a class="whatsapp" href="https://wa.me/+5519993250801?text=Ol%C3%A1%20vim%20atravez%20do%20aplicativo%20queria%20tirar%20duvidas!"><i class="bi bi-whatsapp"></i></a>
