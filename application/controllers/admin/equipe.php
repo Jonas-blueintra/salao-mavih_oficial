@@ -13,6 +13,8 @@ class equipe extends CI_Controller
     {
         $dados = [
             'nome' => $this->input->post('nome'),
+            'idade' => $this->input->post('idade'),
+            'cidade' => $this->input->post('cidade'),
             'especialidade' => $this->input->post('especialidade'),
             'descricao' => $this->input->post('descricao'),
             'status' => $this->input->post('status'),

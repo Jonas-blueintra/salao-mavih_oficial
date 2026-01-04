@@ -117,7 +117,7 @@ class agenda_model extends CI_Model
         $cancelado = $this->db->affected_rows();
 
         if ($cancelado != 0) {
-            return Result::susses($agenda->id);
+            return Result::susses($agenda->id_cliente);
         }else{
             return Result::error();
         }

@@ -76,45 +76,45 @@
                 <h2 class="fw-bold" id="pendentes"><?= $agenda_pendente ?></h2>
             </div>
         </div>
-     
+
     </div>
-   <div class="col-md-12 mb-3">
-            <div class="card shadow card-dashboard p-3 text-center">
+    <div class="col-md-12 mb-3">
+        <div class="card shadow card-dashboard p-3 text-center">
 
-                <i class="bi bi-cash-coin fs-1 text-danger"></i>
+            <i class="bi bi-cash-coin fs-1 text-danger"></i>
 
-                <select id="mesFaturamento" class="form-select">
-                    <?php
-                    $meses = [
-                        1 => 'Janeiro',
-                        2 => 'Fevereiro',
-                        3 => 'Março',
-                        4 => 'Abril',
-                        5 => 'Maio',
-                        6 => 'Junho',
-                        7 => 'Julho',
-                        8 => 'Agosto',
-                        9 => 'Setembro',
-                        10 => 'Outubro',
-                        11 => 'Novembro',
-                        12 => 'Dezembro'
-                    ];
+            <select id="mesFaturamento" class="form-select">
+                <?php
+                $meses = [
+                    1 => 'Janeiro',
+                    2 => 'Fevereiro',
+                    3 => 'Março',
+                    4 => 'Abril',
+                    5 => 'Maio',
+                    6 => 'Junho',
+                    7 => 'Julho',
+                    8 => 'Agosto',
+                    9 => 'Setembro',
+                    10 => 'Outubro',
+                    11 => 'Novembro',
+                    12 => 'Dezembro'
+                ];
 
-                    $mesAtual = date('n'); // 1 a 12
-                    
-                    foreach ($meses as $numero => $nome): ?>
-                        <option value="<?= $numero ?>" <?= $numero == $mesAtual ? 'selected' : '' ?>>
-                            <?= $nome ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <h5 class="mt-2">Faturamento</h5>
+                $mesAtual = date('n'); // 1 a 12
+                
+                foreach ($meses as $numero => $nome): ?>
+                    <option value="<?= $numero ?>" <?= $numero == $mesAtual ? 'selected' : '' ?>>
+                        <?= $nome ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <h5 class="mt-2">Faturamento</h5>
 
 
-                <h2 class="fw-bold" id="faturamentoMes">R$ 0,00</h2>
+            <h2 class="fw-bold" id="faturamentoMes">R$ 0,00</h2>
 
-            </div>
         </div>
+    </div>
 
     <!-- AGENDA + NOTIFICAÇÕES -->
     <div class="row g-4 mb-4">
@@ -176,7 +176,7 @@
                 </div>
             </div>
         </div>
-        <?php if ($notificação_cadastro > 0 || $notificacao_agenda > 0) {
+        <?php if ($notificacao_cadastro > 0 || $notificacao_agenda > 0 || $notificacao_cancelamento > 0) {
             $class = ' bell-anim';
             $style = 'color:green';
 
@@ -184,12 +184,17 @@
             $class = null;
             $style = null;
         }
-        if ($notificação_cadastro > 1) {
+        if ($notificacao_cadastro > 1) {
             $s = 's';
         } else {
             $s = '';
         }
         if ($notificacao_agenda > 1) {
+            $s = 's';
+        } else {
+            $s = '';
+        }
+        if ($notificacao_cancelamento > 1) {
             $s = 's';
         } else {
             $s = '';
@@ -216,13 +221,13 @@
                         </li>
                     <?php endif; ?>
 
-                    <?php if ($notificação_cadastro > 0): ?>
+                    <?php if ($notificacao_cadastro > 0): ?>
                         <li class="list-group-item pulse-anim d-flex justify-content-between align-items-center"
                             onclick="loadPageDashboard('clientes', 'cadastro');">
 
                             <div>
                                 <i class="bi bi-person-plus text-success"></i>
-                                <?= $notificação_cadastro . ' ' ?> Novo<?= $s ?> cliente cadastrado
+                                <?= $notificacao_cadastro . ' ' ?> Novo<?= $s ?> cliente cadastrado
                             </div>
 
                             <button class="btn btn-sm btn-light border-0"
@@ -231,13 +236,24 @@
                             </button>
                         </li>
                     <?php endif; ?>
+                          <?php if ($notificacao_cancelamento > 0): ?>
+                            <li class="list-group-item pulse-anim d-flex justify-content-between align-items-center"
+                                onclick="loadPageDashboard('clientes', 'cadastro');">
+
+                                <div>
+                                     <i class="bi bi-x-circle text-danger"></i>
+                                    <?= $notificacao_cancelamento . ' ' ?> agendamento<?= $s ?> cancelado<?= $s ?>
+                                </div>
+
+                                <button class="btn btn-sm btn-light border-0"
+                                    onclick="fecharNotificacao(event, this, 'cadastro')">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </li>
+                    <?php endif; ?>
 
 
-
-                    <li class="list-group-item ">
-                        <i class="bi bi-x-circle text-danger"></i>
-                        1 agendamento cancelado hoje
-                    </li>
+                    
                 </ul>
             </div>
         </div>

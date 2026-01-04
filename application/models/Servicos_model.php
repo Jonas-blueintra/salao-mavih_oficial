@@ -120,7 +120,7 @@ class Servicos_model extends CI_Model
     {
         $sql = "SELECT * FROM servicos WHERE promocao = 'ativo' AND e_promocao = 'sim'";
         $query = $this->db->query($sql);
-        $servicos = $query->result();
+        $servicos = $query->row();
         if (!$servicos) {
             return Result::error('', null);
         }

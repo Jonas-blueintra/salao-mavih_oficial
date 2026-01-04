@@ -95,8 +95,9 @@ class home extends CI_Controller
 
         $agenda_total = $this->total_agenda_hoje();
         $agenda_pendente = $this->total_agenda_pendente();
+        $notificacao_cancelamento = $this->not_de_cancelamento();
         $notificacao_agenda = $this->not_agendamento();
-        $notificação_cadastro = $this->not_de_cadastro();
+        $notificacao_cadastro = $this->not_de_cadastro();
         $agenda_hoje = $this->agenda_model->agenda_hoje();
         $horarios_salvos = $this->agenda_model->buscar_horarios_salvos();
         $mostrar_serviços = $this->Servicos_model->servicos_vs_cliente();
@@ -118,7 +119,8 @@ class home extends CI_Controller
             'usuarios' => $quantidade_usuarios,
             'agenda_total' => $agenda_total,
             'agenda_pendente' => $agenda_pendente,
-            'notificação_cadastro' => $notificação_cadastro,
+            'notificacao_cancelamento' => $notificacao_cancelamento,
+            'notificacao_cadastro' => $notificacao_cadastro,
             'agenda_hoje' => $agenda_hoje,
             'horarios_salvos' => $horarios_salvos,
             'notificacao_agenda' => $notificacao_agenda,
@@ -170,7 +172,13 @@ ob_clean();
             ]));
     }
 
-
+public function not_de_cancelamento()
+    {
+        $sql = "SELECT COUNT(*) AS total FROM notificacoes WHERE tipo = 'cancelamento' AND visto = 0";
+        $stmt = $this->db->query($sql);
+        $result = $stmt->row()->total;
+        return $result;
+    }
 
     public function not_de_cadastro()
     {

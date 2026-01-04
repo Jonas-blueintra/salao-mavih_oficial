@@ -11,7 +11,9 @@ class Equipe extends CI_Controller
     }
     public function index()
     {
-        $this->load->view('cliente/pages/equipe');
+		$data['equipe'] = $this->global_model->buscar_tabela_interia('equipe');
+
+        $this->load->view('cliente/pages/equipe' ,$data);
         
 
     }

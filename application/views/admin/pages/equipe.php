@@ -151,17 +151,24 @@
 
                     <div class="mb-2">
                         <label class="form-label fw-semibold">Nome</label>
-                        <input type="text" name="nome" class="form-control" required>
+                        <input type="text" name="nome" class="form-control" placeholder="Nome" required>
                     </div>
-
+                    <div class="mb-2">
+                        <label class="form-label fw-semibold">Idade</label>
+                        <input type="text" name="idade" class="form-control" placeholder="Idade" required>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label fw-semibold">Cidade</label>
+                        <input type="text" name="cidade" class="form-control" placeholder="Cidade-UF" required>
+                    </div>
                     <div class="mb-2">
                         <label class="form-label fw-semibold">Especialidade</label>
-                        <input type="text" name="especialidade" class="form-control" required>
+                        <input type="text" name="especialidade" class="form-control" placeholder="Especialidade" required>
                     </div>
 
                     <div class="mb-2">
                         <label class="form-label fw-semibold" required>Descrição curta</label>
-                        <textarea required name="descricao" class="form-control" rows="2"></textarea>
+                        <textarea required name="descricao" class="form-control" rows="2" ></textarea>
                     </div>
 
                     <div class="mb-3">
@@ -203,6 +210,8 @@
                             <tr>
                                 <th>Foto</th>
                                 <th>Nome</th>
+                                <th>Idade</th>
+                                <th>Cidade</th>
                                 <th>Especialidade</th>
                                 <th>Status</th>
                                 <th>Ações</th>
@@ -218,6 +227,8 @@
                                         <img src="<?= base_url('uploads/usuarios/' . $usuario->foto) ?>" class="avatar">
                                     </td>
                                     <td><?= $usuario->nome ?></td>
+                                    <td><?= $usuario->idade ?></td>
+                                    <td><?= $usuario->cidade ?></td>
                                     <td><?= $usuario->especialidade ?></td>
                                     <td>
                                         <?php if ($usuario->status == 'ativo'): ?>

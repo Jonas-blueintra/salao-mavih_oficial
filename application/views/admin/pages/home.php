@@ -1869,7 +1869,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         .then(resp => {
                             if (resp.error == 0) {
                                 Swal.fire('Excluído!', resp.msg, 'success')
-                                    .then(() => location.reload());
+                                    .then(() => loadPage('equipe'));
                             } else {
                                 Swal.fire('Erro', resp.msg, 'error');
                             }

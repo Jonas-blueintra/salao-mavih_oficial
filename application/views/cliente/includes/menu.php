@@ -6,7 +6,7 @@ $url = $_SERVER['REQUEST_URI'];
 
 
 if ($tem_agenda) {
-    $width = '45%';
+    $width = '40%';
 } else {
     $width = '100%';
 } ?>
@@ -585,7 +585,8 @@ if ($tem_agenda) {
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('cliente/home') ?>">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('cliente/Servicos_cliente') ?>">Serviços</a>
                 </li>
-                <?php if ($promocao->data ): ?>
+                <?php if ($promocao->data->tempo_promocao > date('d-m-Y') ):?>
+
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('cliente/promocao/promocao') ?>">Promoção
                        <?php if ($url != '/salao-mavih/cliente/promocao/promocao'):?>
                             <span class="gift-wrap2">
@@ -599,7 +600,7 @@ if ($tem_agenda) {
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('cliente/minha_agenda') ?>">Minha Agenda
                         </a></li>
                 <?php endif; ?>
-                <li class="nav-item"><a class="nav-link" href="<?= base_url('cliente/equipe') ?>">Equipe</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('cliente/equipe') ?>">Proficional</a></li>
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('cliente/contato') ?>">Contato</a></li>
             </ul>
 

@@ -34,8 +34,12 @@ class Agendar extends CI_Controller
     {
         $motivo = $this->input->get('motivo');
         $quem_cancelou = $this->input->get('quem_cancelou');
-
+        
         $result = $this->agenda_model->cancelar_status_agenda($id, $motivo, $quem_cancelou);
+        if($result)
+        {
+            $this->notificacao_model->cancelamento_agendamento($result->data);
+        }
         $output = $this->crud->response($result->susses, $result->message);
         ob_clean();
         return $this->output->set_content_type('application/json')->set_output(json_encode($output));
