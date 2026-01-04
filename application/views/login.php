@@ -413,12 +413,9 @@ $logo = $this->global_model->get('tela_cliente', 1, true);
       </div>
 
       <div id="ios-steps" class="ios-steps">
-        <div>1️⃣ Toque em <strong>Opções</strong> (⋯)</div>
-        <div>2️⃣ Toque em <strong>Compartilhar</strong></div>
-        <div>3️⃣ Escolha <strong>Adicionar à Tela de Início</strong></div>
-        <div>4️⃣ Confirme em <strong>Adicionar</strong></div>
-
-
+        <div>1️⃣ Toque em <strong>Compartilhar</strong></div>
+        <div>2️⃣ Escolha <strong>Adicionar à Tela de Início</strong></div>
+        <div>3️⃣ Confirme em <strong>Adicionar</strong></div>
       </div>
     </div>
 
