@@ -46,4 +46,23 @@ class Notificacao_model extends CI_Model
         $this->db->insert($tabela, $dados);
         
     }
+        public function cancelamento_agendamento($id)
+    {
+        $sql = "SELECT * FROM usuarios WHERE id = $id ";
+        $query = $this->db->query($sql);
+        $usuario = $query->row();
+
+         $mensag = explode(' ', trim($usuario->nome))[0] . ' ' . 'Cancelou a agenda!';
+        $dados = [];
+        $dados = [
+            'usuario_id' => $usuario->id,
+            'tipo' => 'cancelamento',
+            'dados' => $mensag, 
+            'visto' => 0,
+            'data_envio' => date('d-m-Y')
+        ];
+        $tabela = 'notificacoes';
+        $this->db->insert($tabela, $dados);
+        
+    }
 }
