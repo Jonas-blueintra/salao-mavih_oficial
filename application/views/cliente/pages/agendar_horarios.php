@@ -93,6 +93,42 @@
             /* 7 colunas sempre */
             gap: 6px;
         }
+        * {
+    box-sizing: border-box;
+}
+
+
+
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+    width: 100%;
+}
+.day {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    font-size: 13px;
+    border-radius: 10px;
+}
+@media (max-width: 576px) {
+
+    .calendar {
+        padding: 10px;
+    }
+
+    .calendar-header {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .row.fw-bold .col {
+        font-size: 12px;
+        padding: 0;
+    }
+
+}
+
     </style>
 </head>
 

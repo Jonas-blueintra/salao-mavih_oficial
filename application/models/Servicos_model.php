@@ -128,4 +128,15 @@ class Servicos_model extends CI_Model
         return Result::susses($servicos, $mensag);
     }
 
+    public function servico_promocao_todos()
+    {
+        $sql = "SELECT * FROM servicos WHERE promocao = 'ativo' AND e_promocao = 'sim'";
+        $query = $this->db->query($sql);
+        $servicos = $query->result();
+        if (!$servicos) {
+            return Result::error('', null);
+        }
+        $mensag = "sucesso";
+        return Result::susses($servicos, $mensag);
+    }
 }
