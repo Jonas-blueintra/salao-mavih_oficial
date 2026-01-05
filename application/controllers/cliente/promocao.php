@@ -16,7 +16,7 @@ class promocao extends CI_Controller
  }
  public function promocao()
  {
-    $data['servico_promocao'] = $this->Servicos_model->servico_promocao();
+    $data['servico_promocao'] = $this->Servicos_model->servico_promocao_todos();
         $this->load->view('cliente/pages/promocao',$data);
  }
 }

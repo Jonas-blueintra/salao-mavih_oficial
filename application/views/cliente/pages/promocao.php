@@ -440,6 +440,65 @@
                 transform: translateY(-60%)
             }
         }
+        @media (max-width: 576px) {
+    .promo-card {
+        max-width: 340px;
+    }
+
+  
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 42px;
+        height: 42px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .promo-card {
+        padding: 0;
+    }
+
+    .promo-img {
+        width: 100%;
+        height: auto;          /* mantém proporção */
+        display: block;
+        object-fit: contain;   /* não corta a imagem */
+    }
+}
+section.container2 {
+    position: relative;
+    padding-bottom: 170px;
+}
+.promo-card {
+    margin: 0 auto;
+}
+footer {
+    position: relative;
+    z-index: 1;
+    margin-top: 80px;
+}
+@media (min-width: 768px) {
+
+    .promo-card {
+        max-width: 360px;
+        width: 100%;
+    }
+
+    .promo-desc {
+        font-size: .95rem;
+        color: #7c5865;
+        line-height: 1.4;
+        margin-bottom: 16px;
+    }
+
+  
+        .promo-img {
+            width: 100%;
+        }
+
+}
+
     </style>
 
 </head>
@@ -463,71 +522,98 @@
     </section>
 
 
-    <section class="container my-5">
-        <div id="promoCarousel" class="carousel slide" data-bs-touch="true">
+    <section class="container d-block d-md-none mt-4">
+    <div id="promoMobile" class="carousel slide" data-bs-touch="true">
+        <div class="carousel-inner">
 
-            <div class="carousel-inner">
+            <?php foreach ($servico_promocao->data as $i => $promocao): ?>
+                <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
+                    <div class="promo-card mx-auto">
 
-                <?php
-                $chunks = array_chunk($servico_promocao->data, 3);
-                foreach ($chunks as $index => $grupo):
-                    ?>
-                    <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                        <div class="row justify-content-center g-4">
-
-                            <?php foreach ($grupo as $promocao): ?>
-                                <div class="col-12 col-md-4">
-                                    <div class="promo-card ">
-
-                                        <div class="promo-badge"><?php $desconto = (($promocao->preco_antigo - $promocao->valor)/$promocao->preco_antigo)*100; echo round($desconto);  ?>%</div>
-
-                                        <img src="<?= base_url('uploads/servicos/' . $promocao->foto) ?>" class="promo-img">
-
-                                        <div class="promo-content">
-                                            <h4><?= $promocao->nome ?></h4>
-
-                                            <p>
-                                                <?= $promocao->descricao ?>
-                                                <br>
-                                                <span class="promo-small">
-                                                    Duração média: <?= $promocao->duracao ?> minutos
-                                                </span>
-                                            </p>
-
-                                            <div class="promo-price d-flex align-items-center justify-content-between">
-                                                <div class="price-main">
-                                                    <span class="price-old">R$<?= $promocao->preco_antigo ?></span>
-                                                    <span class="price-new">R$<?= $promocao->valor ?></span>
-                                                </div>
-
-                                                <span class="promo-off">
-                                                    Economize R$
-                                                    <?= $promocao->preco_antigo - $promocao->valor ?>
-                                                </span>
-                                            </div>
-
-                                            <a  href="<?= base_url('cliente/agendar/index/' . $promocao->id); ?>" class="btn btn-promo">Agendar</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-
+                        <div class="promo-badge">
+                            <?php
+                            $desconto = (($promocao->preco_antigo - $promocao->valor) / $promocao->preco_antigo) * 100;
+                            echo round($desconto);
+                            ?>%
                         </div>
+
+                        <img src="<?= base_url('uploads/servicos/' . $promocao->foto) ?>" class="promo-img">
+
+                        <div class="promo-content">
+                            <h4><?= $promocao->nome ?></h4>
+                            <p><?= $promocao->descricao  ?></p>
+
+                            <div class="promo-price">
+                                <span class="price-old">R$<?= $promocao->preco_antigo ?></span>
+                                <span class="price-new">R$<?= $promocao->valor ?></span>
+                            </div>
+
+                            <a href="<?= base_url('cliente/agendar/index/' . $promocao->id); ?>" class="btn btn-promo">
+                                Agendar
+                            </a>
+                        </div>
+
                     </div>
-                <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
+
+        </div>
+
+        <button class="carousel-control-prev" data-bs-target="#promoMobile" data-bs-slide="prev" type="button">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" data-bs-target="#promoMobile" data-bs-slide="next" type="button">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</section>
+
+<section class="container d-none d-md-block my-5">
+    <div class="row justify-content-center gy-5">
+
+        <?php foreach ($servico_promocao->data as $promocao): ?>
+            <div class="col-lg-4 col-md-6 d-flex justify-content-center">
+
+                <div class="promo-card h-100 d-flex flex-column">
+
+                    <div class="promo-badge">
+                        <?php
+                        $desconto = (($promocao->preco_antigo - $promocao->valor) / $promocao->preco_antigo) * 100;
+                        echo round($desconto);
+                        ?>%
+                    </div>
+
+                    <img src="<?= base_url('uploads/servicos/' . $promocao->foto) ?>" class="promo-img">
+
+                    <div class="promo-content d-flex flex-column flex-grow-1">
+
+                        <h4><?= $promocao->nome ?></h4>
+
+                        <p class="promo-desc">
+                            <?= $promocao->descricao ?>
+                        </p>
+
+                        <div class="promo-price mt-auto">
+                            <span class="price-old">R$<?= $promocao->preco_antigo ?></span>
+                            <span class="price-new">R$<?= $promocao->valor ?></span>
+                        </div>
+
+                        <a href="<?= base_url('cliente/agendar/index/' . $promocao->id); ?>" 
+                           class="btn btn-promo mt-3">
+                            Agendar
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
+        <?php endforeach; ?>
 
+    </div>
+</section>
 
-            <button class="carousel-control-prev" data-bs-target="#promoCarousel" data-bs-slide="prev" type="button">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" data-bs-target="#promoCarousel" data-bs-slide="next" type="button">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-        </div>
-    </section>
 
 
     <?php $this->load->view('cliente/includes/footer') ?>
