@@ -1401,6 +1401,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 transform: scale(1.1);
             }
         }
+         .equipe-meta {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            font-size: 15px;
+            color: #777;
+            margin-bottom: 14px;
+            margin-top: 15px;
+        }
+
+        .meta-item i {
+            color: #ff5c8a;
+            margin-right: 6px;
+        }
+        
     </style>
 
 </head>
@@ -1574,8 +1589,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="card text-center p-3">
                             <img src="<?= base_url('uploads/usuarios/' . $membro->foto) ?>" class="rounded-circle mx-auto"
                                 style="width: 150px; height: 150px;">
+                                 <div class="equipe-meta">
+                                    <div class="meta-item">
+                                        <i class="bi bi-person"></i>
+                                        23 anos
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="bi bi-geo-alt"></i>
+                                        Vinhedo
+                                    </div>
+                                </div>
                             <h5 class="mt-3"><?= $membro->nome ?></h5>
                             <p><?= $membro->especialidade ?></p>
+                                <p class="equipe-info"><?= $membro->descricao ?></p>
+
                         </div>
                     </div>
 

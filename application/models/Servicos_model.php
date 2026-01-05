@@ -130,7 +130,7 @@ class Servicos_model extends CI_Model
 
     public function servico_promocao_todos()
     {
-        $sql = "SELECT * FROM servicos WHERE promocao = 'ativo' AND e_promocao = 'sim'";
+        $sql = "SELECT * FROM servicos WHERE promocao = 'ativo' AND e_promocao = 'sim' AND tempo_promocao  <= CURDATE();";
         $query = $this->db->query($sql);
         $servicos = $query->result();
         if (!$servicos) {

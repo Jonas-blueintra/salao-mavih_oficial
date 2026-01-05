@@ -279,7 +279,7 @@
             <div id="listaHorarios" class="horarios"></div>
         </div>
         <!-- CONFIRMAR -->
-        <button id="btnConfirmar" class="btn btn-success btn-lg w-100 rounded-pill d-none">
+        <button id="btnConfirmar" class="btn btn-success btn-lg w-100 rounded-pill d-none mt-4">
             Confirmar Agendamento
         </button>
 
