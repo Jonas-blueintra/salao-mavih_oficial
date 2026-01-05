@@ -83,10 +83,7 @@
             margin-bottom: 10px;
         }
 
-        .equipe-info {
-            font-size: 14px;
-            color: #6f5b63;
-        }
+     
 
         .body-offset {
             margin-top: 140px;
