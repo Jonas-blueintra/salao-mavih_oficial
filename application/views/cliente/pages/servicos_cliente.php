@@ -673,7 +673,7 @@
 
             <span class="badge badge-agenda px-4 py-2">
                 <i class="bi bi-check-circle-fill me-1"></i>
-                Agende Seu Serviço agora<i class="bi bi-arrow-down-short arrow-down"></i>
+               Escolha o Serviço Agora<i class="bi bi-arrow-down-short arrow-down"></i>
             </span>
         </div>
 

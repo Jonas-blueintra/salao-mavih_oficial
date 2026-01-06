@@ -1569,7 +1569,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- EQUIPE -->
     <section id="equipe" class="bg-light py-5">
         <div class="container">
-            <h2 class="text-center fw-bold mb-5 fade-up">Nossa Equipe</h2>
+            <h2 class="text-center fw-bold mb-5 fade-up">Profissional</h2>
 
             <div class="row g-4">
                 <?php $total = count($equipe->data); ?>
