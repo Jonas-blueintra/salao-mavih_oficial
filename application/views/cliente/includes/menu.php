@@ -562,13 +562,17 @@ if ($tem_agenda) {
                 data-bs-target="#menuCliente">
 
                 <span class="navbar-toggler-icon"></span>
+                <?php if ($promocao->data != null):?>
                 <?php if ($promocao->data && $url != '/salao-mavih/cliente/promocao/promocao'): ?>
 
                     <span class="gift-wrap">
                         <i class="bi bi-gift-fill"></i>
                         <span class="promo-cloud">Tem promoção!</span>
                     </span>
-                <?php endif; ?>
+                <?php endif; ?><?php endif;?>
+                
+                
+
 
             </button>
 
@@ -584,9 +588,8 @@ if ($tem_agenda) {
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('cliente/home') ?>">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('cliente/Servicos_cliente') ?>">Serviços</a>
-                </li>
-                <?php if ($promocao->data->tempo_promocao > date('d-m-Y') ):?>
-
+                </li>               
+                <?php if ($promocao->data != null):?>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('cliente/promocao/promocao') ?>">Promoção
                        <?php if ($url != '/salao-mavih/cliente/promocao/promocao'):?>
                             <span class="gift-wrap2">
@@ -595,6 +598,7 @@ if ($tem_agenda) {
                             </span><?php endif; ?>
                         </a></li>
                 <?php endif;?>
+                
                 <?php if ($tem_agenda):
                     ?>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('cliente/minha_agenda') ?>">Minha Agenda

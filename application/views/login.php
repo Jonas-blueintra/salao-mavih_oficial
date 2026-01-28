@@ -8,7 +8,7 @@ $logo = $this->global_model->get('tela_cliente', 1, true);
 
 <head>
   <meta charset="UTF-8">
-  <title>Login - Salão Mavih</title>
+  <title>Salão Mavih</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- PWA / Android -->

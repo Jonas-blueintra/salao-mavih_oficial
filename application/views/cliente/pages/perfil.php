@@ -223,7 +223,7 @@
             <div class="col-md-4">
               <label>Senha</label>
               <div class="input-group">
-                <input type="password" id="senha" class="form-control" value="123456" readonly>
+                <input type="password" id="senha" class="form-control" value="<?=$usuario->data->senha?>" readonly>
                 <span class="input-group-text" style="cursor:pointer" onclick="toggleSenha()">
                   <i id="iconSenha" class="bi bi-eye"></i>
                 </span>
@@ -246,7 +246,7 @@
 
             <div class="col-md-6">
               <label>Data de Cadastro</label>
-              <input class="form-control" value="<?= $usuario->data->data_cadastro ?>" readonly>
+              <input class="form-control" value="<?= date("d/m/Y", strtotime($usuario->data->data_cadastro)).' as '.date("H:i:s", strtotime($usuario->data->data_cadastro))  ?>" readonly>
             </div>
           </div>
 
