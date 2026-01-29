@@ -21,8 +21,7 @@ class Servicos_model extends CI_Model
         }
         if ($servicos) {
             return Result::susses($servicos);
-
-        }
+         }
 
     }
     public function cadastrar_servico($tabela, $dados)
@@ -118,7 +117,7 @@ class Servicos_model extends CI_Model
     }
     public function servico_promocao()
     {
-        $sql = "SELECT * FROM servicos WHERE promocao = 'ativo' AND e_promocao = 'sim'";
+        $sql = "SELECT * FROM servicos WHERE promocao = 'ativo' AND e_promocao = 'sim' AND STR_TO_DATE(tempo_promocao, '%d/%m/%Y') >= CURDATE();" ;
         $query = $this->db->query($sql);
         $servicos = $query->row();
         if (!$servicos) {
