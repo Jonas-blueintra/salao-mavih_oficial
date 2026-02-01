@@ -5,253 +5,263 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="pt-br">
 
 <head>
-  <base href="<?php echo base_url(); ?>">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cadastro de Usuário</title>
+    <base href="<?php echo base_url(); ?>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro de Usuário</title>
 
-  <!-- CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <?php $this->load->view('links_style_login/links_css') ?>
-  <style>
+    <?php $this->load->view('links_style_login/links_css') ?>
+    <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #fff0f6, #fff);
+        min-height: 130vh;
+        overflow-x: hidden;
+    }
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#fff0f6,#fff);
-  min-height:130vh;
-  overflow-x:hidden;
-}
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background:
+            radial-gradient(circle at 20% 20%, #ffd6e8 0, transparent 45%),
+            radial-gradient(circle at 80% 80%, #ffeaf4 0, transparent 45%);
+        animation: bgMove 14s infinite alternate;
+        z-index: 0;
+    }
 
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 20%, #ffd6e8 0, transparent 45%),
-    radial-gradient(circle at 80% 80%, #ffeaf4 0, transparent 45%);
-  animation:bgMove 14s infinite alternate;
-  z-index:0;
-}
+    @keyframes bgMove {
+        from {
+            transform: scale(1)
+        }
 
-@keyframes bgMove{
-  from{transform:scale(1)}
-  to{transform:scale(1.12)}
-}
+        to {
+            transform: scale(1.12)
+        }
+    }
 
-/* CARD */
-.card{
-  position:relative;
-  z-index:1;
-  max-width:560px;
-  margin:140px auto;
-  padding:36px 30px!important;
-  border-radius:42px!important;
-  background:linear-gradient(180deg,#ffffff,#fff5fa);
-  box-shadow:0 35px 90px rgba(255,79,139,.30)!important;
-  animation:fadeUp .8s ease;
-  border:none!important;
-  
-}
+    /* CARD */
+    .card {
+        position: relative;
+        z-index: 1;
+        max-width: 560px;
+        margin: 140px auto;
+        padding: 36px 30px !important;
+        border-radius: 42px !important;
+        background: linear-gradient(180deg, #ffffff, #fff5fa);
+        box-shadow: 0 35px 90px rgba(255, 79, 139, .30) !important;
+        animation: fadeUp .8s ease;
+        border: none !important;
 
-/* ENTRADA */
-.form-control,.form-select{
-  border-radius:999px!important;
-  border:1px solid #f4bfd3!important;
-  padding:14px 20px!important;
-}
+    }
 
-.form-control:focus,.form-select:focus{
-  border-color:#ff4f8b;
-  box-shadow:0 0 0 .25rem rgba(255,79,139,.25);
-}
+    /* ENTRADA */
+    .form-control,
+    .form-select {
+        border-radius: 999px !important;
+        border: 1px solid #f4bfd3 !important;
+        padding: 14px 20px !important;
+    }
 
-/* TITULO */
-h3{
-  color:#b02a6b!important;
-  font-weight:700;
-  letter-spacing:.5px;
-}
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #ff4f8b;
+        box-shadow: 0 0 0 .25rem rgba(255, 79, 139, .25);
+    }
 
-/* BOTÃO */
-.btn-usuario{
-  margin-top:14px;
-  background:linear-gradient(135deg,#ff5fa2,#b02a6b)!important;
-  border:none!important;
-  border-radius:999px!important;
-  padding:14px!important;
-  font-weight:600;
-  letter-spacing:.5px;
-  box-shadow:0 18px 40px rgba(255,79,139,.5)!important;
-  transition:.35s;
-}
+    /* TITULO */
+    h3 {
+        color: #b02a6b !important;
+        font-weight: 700;
+        letter-spacing: .5px;
+    }
 
-.btn-usuario:hover{
-  transform:translateY(-4px) scale(1.02);
-}
+    /* BOTÃO */
+    .btn-usuario {
+        margin-top: 14px;
+        background: linear-gradient(135deg, #ff5fa2, #b02a6b) !important;
+        border: none !important;
+        border-radius: 999px !important;
+        padding: 14px !important;
+        font-weight: 600;
+        letter-spacing: .5px;
+        box-shadow: 0 18px 40px rgba(255, 79, 139, .5) !important;
+        transition: .35s;
+    }
 
-/* LINKS */
-a{color:#b02a6b!important}
-a:hover{color:#ff4f8b!important}
+    .btn-usuario:hover {
+        transform: translateY(-4px) scale(1.02);
+    }
 
+    /* LINKS */
+    a {
+        color: #b02a6b !important
+    }
 
-
-</style>
+    a:hover {
+        color: #ff4f8b !important
+    }
+    </style>
 
 </head>
 
 <body class="body_usuario">
 
- <div class="card">
-    <h3 class="text-center mb-3"><i class="bi bi-person-plus"></i> Cadastro de Usuário</h3>
-    <p class="text-center text-muted mb-4">Preencha os dados abaixo para criar seu acesso.</p>
+    <div class="card">
+        <h3 class="text-center mb-3"><i class="bi bi-person-plus"></i> Cadastro de Usuário</h3>
+        <p class="text-center text-muted mb-4">Preencha os dados abaixo para criar seu acesso.</p>
 
-    <!-- NOTICE: id added aqui para compatibilidade -->
-    <form id="formAddUsuario" enctype="multipart/form-data" method="post"
-      action="<?php echo base_url('Login/cadastrar_usuario') ?>">
+        <!-- NOTICE: id added aqui para compatibilidade -->
+        <form id="formAddUsuario" enctype="multipart/form-data" method="post"
+            action="<?php echo base_url('Login/cadastrar_usuario') ?>">
 
-      <!-- NOME -->
-      <div class="mb-3">
-        <label class="form-label">Nome completo</label>
-        <input type="text" name="nome" class="form-control" placeholder="Digite seu nome" required>
-      </div>
+            <!-- NOME -->
+            <div class="mb-3">
+                <label class="form-label">Nome completo</label>
+                <input type="text" name="nome" class="form-control" placeholder="Digite seu nome" required>
+            </div>
 
-      <!-- EMAIL -->
-      <div class="mb-3">
-        <label class="form-label">E-mail</label>
-        <input type="email" name="email" class="form-control" placeholder="Digite seu e-mail" required>
-      </div>
+            <!-- EMAIL -->
+            <div class="mb-3">
+                <label class="form-label">E-mail</label>
+                <input type="email" name="email" class="form-control" placeholder="Digite seu e-mail" required>
+            </div>
 
-      <!-- LOGIN -->
-      <div class="mb-3">
-        <label class="form-label">Login</label>
-        <input type="text" name="login" class="form-control" placeholder="Escolha um login" required>
-      </div>
+            <!-- LOGIN -->
+            <div class="mb-3">
+                <label class="form-label">Login</label>
+                <input type="text" name="login" class="form-control" placeholder="Escolha um login" required>
+            </div>
 
-      <!-- SENHA -->
-      <div class="mb-3">
-        <label class="form-label">Senha</label>
-        <input type="password" name="senha" class="form-control" placeholder="Digite sua senha" required>
-      </div>
+            <!-- SENHA -->
+            <div class="mb-3">
+                <label class="form-label">Senha</label>
+                <input type="password" name="senha" class="form-control" placeholder="Digite sua senha" required>
+            </div>
 
-      <!-- FOTO -->
-      <div class="mb-3">
-        <label class="form-label">Foto</label>
-        <input type="file" name="foto" class="form-control" accept="image/*">
-      </div>
+            <!-- FOTO -->
+            <div class="mb-3">
+                <label class="form-label">Foto</label>
+                <input type="file" name="foto" class="form-control" accept="image/*">
+            </div>
 
-      <!-- SEXO -->
-      <div class="mb-3">
-        <label class="form-label" for="sexo">Sexo</label>
-        <select name="sexo" class="form-select form-control" required>
-          <option value="">Selecione</option>
-          <option value="m">Masculino</option>
-          <option value="f">Feminino</option>
-        </select>
-      </div>
+            <!-- SEXO -->
+            <div class="mb-3">
+                <label class="form-label" for="sexo">Sexo</label>
+                <select name="sexo" class="form-select form-control" required>
+                    <option value="">Selecione</option>
+                    <option value="m">Masculino</option>
+                    <option value="f">Feminino</option>
+                </select>
+            </div>
 
-      <!-- TELEFONE -->
-      <div class="mb-3">
-        <label class="form-label">Telefone</label>
-        <input type="text" name="telefone" class="form-control" placeholder="(00) 00000-0000" required>
-      </div>
+            <!-- TELEFONE -->
+            <div class="mb-3">
+                <label class="form-label">Telefone</label>
+                <input type="text" name="telefone" class="form-control" placeholder="(00) 00000-0000" required>
+            </div>
 
-      <!-- ENDEREÇO -->
-      <div class="mb-3">
-        <label class="form-label">Endereço</label>
-        <input type="text" name="endereco" class="form-control" placeholder="Rua, número, bairro...">
-      </div>
+            <!-- ENDEREÇO -->
+            <div class="mb-3">
+                <label class="form-label">Endereço</label>
+                <input type="text" name="endereco" class="form-control" placeholder="Rua, número, bairro...">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-2 btn-usuario">
+                <span class="btn-text"><i class="bi bi-check-circle"></i> Cadastrar</span>
+                <span class="spinner-border spinner-border-sm d-none btn-spinner" role="status"
+                    aria-hidden="true"></span>
+            </button>
 
-      <!-- BOTÃO -->
-      <button type="submit" class="btn btn-primary w-100 py-2 btn-usuario">
-        <span class="btn-text"><i class="bi bi-check-circle"></i> Cadastrar</span>
-        <span class="spinner-border spinner-border-sm d-none btn-spinner" role="status" aria-hidden="true"></span>
-      </button>
+        </form>
 
-    </form>
-
-    <div class="text-center mt-3">
-      <a href="<?php echo base_url('login') ?>">Já tem conta? Fazer login</a>
+        <div class="text-center mt-3">
+            <a href="<?php echo base_url('login') ?>">Já tem conta? Fazer login</a>
+        </div>
     </div>
-  </div>
 
-  <!-- SCRIPTS NECESSÁRIOS (jQuery, SweetAlert2, Bootstrap JS) -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>$(function () {
-      const form = $("#formAddUsuario");
-      if (!form.length) return;
+    <!-- SCRIPTS NECESSÁRIOS (jQuery, SweetAlert2, Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    $(function() {
+        const form = $("#formAddUsuario");
+        if (!form.length) return;
 
-      const btn = form.find(".btn-usuario");
-      const btnText = form.find(".btn-text");
-      const btnSpinner = form.find(".btn-spinner");
-      const originalText = btnText.text();
+        const btn = form.find(".btn-usuario");
+        const btnText = form.find(".btn-text");
+        const btnSpinner = form.find(".btn-spinner");
+        const originalText = btnText.text();
 
-      form.on("submit", function (e) {
-        e.preventDefault();
+        form.on("submit", function(e) {
+            e.preventDefault();
 
-        let fd = new FormData(this);
+            let fd = new FormData(this);
 
-        $.ajax({
-          url: form.attr("action"),
-          method: "POST",
-          data: fd,
-          contentType: false,
-          processData: false,
-          dataType: "json",
+            $.ajax({
+                url: form.attr("action"),
+                method: "POST",
+                data: fd,
+                contentType: false,
+                processData: false,
+                dataType: "json",
 
-          beforeSend: function () {
-            btn.prop("disabled", true);
-            btnText.addClass("d-none");
-            btnSpinner.removeClass("d-none");
-          },
+                beforeSend: function() {
+                    btn.prop("disabled", true);
+                    btnText.addClass("d-none");
+                    btnSpinner.removeClass("d-none");
+                },
 
-          success: function (json) {
-            // Validação básica da resposta
-            if (!json || typeof json.error === "undefined") {
-              Swal.fire("Erro", "Resposta inválida do servidor.", "error");
-              return;
-            }
+                success: function(json) {
+                    // Validação básica da resposta
+                    if (!json || typeof json.error === "undefined") {
+                        Swal.fire("Erro", "Resposta inválida do servidor.", "error");
+                        return;
+                    }
 
-            const isOk = json.error == "0";
+                    const isOk = json.error == "0";
 
-            Swal.fire({
-              icon: isOk ? "success" : "error",
-              title: isOk ? "Sucesso" : "Erro",
-              text: json.msg || ""
-            }).then(() => {
+                    Swal.fire({
+                        icon: isOk ? "success" : "error",
+                        title: isOk ? "Sucesso" : "Erro",
+                        text: json.msg || ""
+                    }).then(() => {
 
-              if (isOk) {
-                // redireciona sempre para login
-                let base = $("base").attr("href") || "";
-                window.location.href = base + "login";
-                return;
-              }
+                        if (isOk) {
+                            // redireciona sempre para login
+                            let base = $("base").attr("href") || "";
+                            window.location.href = base + "login";
+                            return;
+                        }
 
+                    });
+
+
+                },
+
+                error: function(xhr) {
+                    Swal.fire("Erro Ajax", xhr.responseText || "Erro desconhecido",
+                        "error");
+                },
+
+                complete: function() {
+                    btn.prop("disabled", false);
+                    btnSpinner.addClass("d-none");
+                    btnText.removeClass("d-none").text(originalText);
+                }
             });
-
-
-          },
-
-          error: function (xhr) {
-            Swal.fire("Erro Ajax", xhr.responseText || "Erro desconhecido", "error");
-          },
-
-          complete: function () {
-            btn.prop("disabled", false);
-            btnSpinner.addClass("d-none");
-            btnText.removeClass("d-none").text(originalText);
-          }
         });
-      });
-    });</script>
+    });
+    </script>
 
-  <!-- SEU JS AJAX -->
+    <!-- SEU JS AJAX -->
 
 </body>
 
