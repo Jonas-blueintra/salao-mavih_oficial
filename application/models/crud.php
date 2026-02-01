@@ -12,28 +12,21 @@ class Crud extends CI_Model
 
     public function Login($login, $senha)
     {
-        $sql = "SELECT * FROM usuario_admin WHERE login = ?";
-        $query = $this->db->query($sql, [$login]);
-        $usuario = $query->row();
-
-
-        if (!$usuario) {
-            $sql = "SELECT * FROM usuarios WHERE login = ?";
-            $query = $this->db->query($sql, [$login]);
+        $sql = "SELECT * FROM usuario_admin WHERE login = ? AND senha = ?";
+        $query = $this->db->query($sql, [$login,$senha]);
+        $usuario_admin = $query->row();
+        
+       if(!$usuario_admin){
+            $sql = "SELECT * FROM usuarios WHERE login = ? AND senha = ?";
+            $query = $this->db->query($sql, [$login,$senha]);
             $usuario = $query->row();
-        }
-
-        if (!$usuario) {
-            $mensag = 'Úsuario não encontrado!';
-            return Result::error($mensag); // Usuário não encontrado
-        }
-
-        if ($usuario->senha != $senha) {
-            $mensag = "Senha inválida";
-            return Result::error($mensag); // senha incorreta
-        }
+       }
+        if (!$usuario_admin && !$usuario) {
+                $mensag = "error Usuário não Cadastrado";
+                return Result::error($mensag);
+            }
         $mensag = 'Login autorizado';
-        // Criar entity
+
         return Result::susses(
             new User_entity(
                 $usuario->id,

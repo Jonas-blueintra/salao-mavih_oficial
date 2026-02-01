@@ -70,7 +70,6 @@ class Cliente_model extends CI_Model
 
         $session = $this->session->userdata('tipo');
 
-        if ($dados['tipo'] == 'cliente') {
             if (!$dados) {
                 $mensag = "error Usuário não Cadastrado";
                 return Result::error($mensag);
@@ -94,7 +93,6 @@ class Cliente_model extends CI_Model
                     $redirect = 'dashboard';
                 }
             
-        }else{
             if (!$dados) {
                 $mensag = "error Usuário não Cadastrado";
                 return Result::error($mensag);
@@ -115,7 +113,6 @@ class Cliente_model extends CI_Model
                     $redirect = 'dashboard';
                 }
 
-        }
 
        
         $mensag = "Usuario cadastrado Com Sucesso";

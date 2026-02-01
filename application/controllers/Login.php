@@ -107,18 +107,32 @@ class Login extends CI_Controller
     public function cadastrar_usuario()
     {
         $tipo = $this->input->post('tipo');
+         if ($this->input->post('tipo') == null) {
+            $tipo = 'cliente';
+            $status = 'ativo';
+        }
+
+           if ($this->input->post('tipo') == 'cliente') {
+            $tipo = 'cliente';
+            $status = $this->input->post('status');
+        }
+        if ($this->input->post('tipo') == 'admin') {
+            $tipo = 'admin';
+            $status = $this->input->post('status');
+        }
+        
         if ($tipo == 'cliente') {
             $config['upload_path'] = './uploads/usuarios/';
             $config['allowed_types'] = 'jpg|jpeg|png';
-            $config['max_size'] = 2048; // 2MB
-            $config['encrypt_name'] = true; // gera nome aleatório
+            $config['max_size'] = 2048; 
+            $config['encrypt_name'] = true; 
 
             $this->load->library('upload', $config);
         } else {
             $config['upload_path'] = './uploads/admin/';
             $config['allowed_types'] = 'jpg|jpeg|png';
-            $config['max_size'] = 2048; // 2MB
-            $config['encrypt_name'] = true; // gera nome aleatório
+            $config['max_size'] = 2048; 
+            $config['encrypt_name'] = true; 
 
             $this->load->library('upload', $config);
         }
@@ -138,20 +152,9 @@ class Login extends CI_Controller
             }
         }
         $usuario = [];
-        if ($this->input->post('tipo') == null) {
-            $tipo = 'cliente';
-            $status = 'ativo';
-        }
+       
 
-        if ($this->input->post('tipo') == 'cliente') {
-            $tipo = 'cliente';
-            $status = $this->input->post('status');
-        }
-        if ($this->input->post('tipo') == 'admin') {
-            $tipo = 'admin';
-            $status = $this->input->post('status');
-
-        }
+     
 
 
         $usuario = [
