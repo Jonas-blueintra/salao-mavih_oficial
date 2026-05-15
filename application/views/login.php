@@ -615,13 +615,20 @@ a {
                 success: function(json) {
                     const fotoUsuario =
                         "<?= base_url('uploads/usuarios/' ); ?>";
+                    singular = '';
+                    if (json.data != null) {
+                        if (json.data.sexo === 'm') {
+                            singular = 'o';
+                        } else {
+                            singular = 'a';
+                        }
+                    }
 
                     const isSuccess = json.error === '0';
-
                     Swal.fire({
                         background: 'transparent',
                         showConfirmButton: !isSuccess,
-                        timer: isSuccess ? 1600 : undefined,
+                        timer: isSuccess ? 3000 : undefined,
                         icon: undefined,
                         allowOutsideClick: false,
                         html: `
@@ -630,7 +637,7 @@ a {
                                  ${isSuccess ? `<img class="img_login_card" src="${fotoUsuario}${json.data.foto}">` : '✕'}
                                  </div>
                                    <h2>
-                                     ${isSuccess ? 'Bem-vindo!' : 'Algo não deu certo'}
+                                     ${isSuccess ? `Bem-vind${singular}!` : 'Algo não deu certo'}
                                    </h2>
                                    <p>
                                      ${json.msg}

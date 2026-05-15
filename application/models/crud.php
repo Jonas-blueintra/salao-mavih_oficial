@@ -15,6 +15,26 @@ class Crud extends CI_Model
         $sql = "SELECT * FROM usuario_admin WHERE login = ? AND senha = ?";
         $query = $this->db->query($sql, [$login,$senha]);
         $usuario_admin = $query->row();
+
+        if($usuario_admin){
+            return Result::susses(
+                new User_entity(
+                    $usuario_admin->id,
+                    $usuario_admin->nome,
+                    $usuario_admin->email,
+                    $usuario_admin->login,
+                    $usuario_admin->senha,
+                    $usuario_admin->foto,
+                    $usuario_admin->sexo,
+                    $usuario_admin->telefone,
+                    $usuario_admin->endereco,
+                    $usuario_admin->tipo,
+                    $usuario_admin->status,
+                    $usuario_admin->data_cadastro,
+                ),
+                'Login autorizado como Administrador',
+            );
+        }
         
        if(!$usuario_admin){
             $sql = "SELECT * FROM usuarios WHERE login = ? AND senha = ?";

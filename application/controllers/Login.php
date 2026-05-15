@@ -38,7 +38,7 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('senha', 'Senha', 'trim|required|min_length[6]');
 
         if ($this->form_validation->run() == FALSE) {
-            $output = $this->response(false, validation_errors());
+            $output = $this->response(false, validation_errors(),null);
             return $this->output
                 ->set_content_type('application/json', 'utf-8')
                 ->set_output(json_encode($output));
@@ -50,7 +50,7 @@ class Login extends CI_Controller
         $result = $this->crud->Login($email, $senha);
 
         if ($result->susses == false) {
-            $output = $this->response(false, $result->message);
+            $output = $this->response(false, $result->message,null);
             return $this->output
                 ->set_content_type('application/json', 'utf-8')
                 ->set_output(json_encode($output));

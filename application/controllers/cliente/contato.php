@@ -9,7 +9,8 @@ class contato extends CI_Controller
     }
     public function index()
     {
-        $this->load->view("cliente\pages\contato");
+       $data['tela_cliente'] = $this->global_model->get('tela_cliente', 1, true);
+        $this->load->view("cliente\pages\contato", $data);
        
     }
 }

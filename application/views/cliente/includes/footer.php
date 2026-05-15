@@ -1,22 +1,36 @@
-<style>/* ===== CONTATO ===== */
-#contato {
-    background: linear-gradient(135deg, #fde2e4, #fff1f4) !important;
+<style>
+:root {
+    --cor-principal: #c59d5f;
+    /* dourado */
+    --cor-secundaria: #000;
+    /* preto */
+    --cor-bg: #000;
+    /* fundo escuro */
+    --cor-card: #1f1f1f;
+    /* cards */
+    --texto: #eaeaea;
+    /* texto claro */
+    --texto-suave: #aaaaaa;
+    /* cinza suave */
+    --blue: blue;
 }
+
+
 
 #contato .container {
     background: #ffffff;
     border-radius: 26px;
     padding: 40px 30px;
-    box-shadow: 0 12px 30px rgba(176, 42, 107, 0.15);
+    box-shadow: 0 12px 30px var(--blue);
 }
 
 #contato h2 {
-    color: #b02a6b;
+    color: var(--cor-bg);
     font-weight: 700;
 }
 
 #contato p {
-    color: #7a5a65;
+    color: var(--texto-suave);
     font-size: 1rem;
     margin-bottom: 6px;
 }
@@ -29,7 +43,7 @@
 
 /* ===== FOOTER ===== */
 .footer_home {
-    background: linear-gradient(135deg, #e63982, #b02a6b);
+    background: var(--blue);
     color: #fff;
     padding: 20px 10px;
     font-size: .95rem;
@@ -52,6 +66,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -75,7 +90,8 @@
         <p>Rua 5 de junho 63 - Centro</p>
         <p>Telefone: (11) 99999-9999</p>
 
-        <iframe class="rounded mt-4" width="100%" height="300" src="https://maps.google.com/maps?q=Rua Cinco de Junho, 68 - Chácara Lago&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+        <iframe class="rounded mt-4" width="100%" height="300"
+            src="https://maps.google.com/maps?q=Rua Cinco de Junho, 68 - Chácara Lago&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
     </div>
 </section>
 

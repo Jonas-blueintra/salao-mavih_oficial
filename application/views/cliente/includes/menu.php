@@ -33,7 +33,7 @@ if ($tem_agenda) {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            font-family: "Parisienne", cursive;
+            font-family: 'Alfa Slab One', serif;
             font-size: 22px;
             font-weight: 500;
             color: white;
@@ -61,7 +61,7 @@ if ($tem_agenda) {
             .logo-title {
                 position: static;
                 transform: none;
-                margin-left: 125px;
+                margin-left: 100px;
                 font-size: 30px;
             }
 
@@ -150,7 +150,7 @@ if ($tem_agenda) {
             }
 
             .logo-title {
-                font-size: 30px;
+                font-size: 17px;
             }
 
             .navbar-top-row {
@@ -165,8 +165,8 @@ if ($tem_agenda) {
         }
 
         .navbar {
-            background: linear-gradient(135deg, #ff4f8b, #f8c9d6) !important;
-            border-bottom: 2px solid #f0a7bc;
+            background: black !important;
+            border-bottom: 2px solid blue;
         }
 
         .navbar-nav .nav-link {
@@ -176,7 +176,7 @@ if ($tem_agenda) {
         }
 
         .navbar-nav .nav-link:hover {
-            color: #ffe0ec !important;
+            color: blue !important;
             text-decoration: underline;
         }
 
@@ -189,12 +189,9 @@ if ($tem_agenda) {
             filter: invert(1);
         }
 
-        .navbar-nav img {
-            border: 3px solid #f8c9d6;
-        }
 
         .dropdown-menu {
-            background: #ffedf1;
+            background: #161616;
             border-radius: 15px;
             border: none;
             box-shadow: 0 8px 20px rgba(0, 0, 0, .1);
@@ -206,31 +203,36 @@ if ($tem_agenda) {
         }
 
         .sair:hover {
-            background: #ff6f9e;
-            color: #ffffff;
+            background: blue;
+            color: red;
+        }
+
+        .sair1 {
+            color: #fff;
         }
 
         .sair1:hover {
-            background: #ff6f9e;
+            background: blue;
             color: #ffffff;
         }
 
         .navbar-nav.d-lg-none {
-            background: #ffedf1 !important;
+            background: #161616 !important;
             border-radius: 12px;
+            box-shadow: 0 10px 30px blue;
         }
 
         .navbar-nav.d-lg-none .nav-link {
-            color: #ff4f8b !important;
+            color: #ffffff !important;
         }
 
         .navbar-nav.d-lg-none .nav-link:hover {
-            background: #ff4f8b;
+            background: var(--blue);
             color: #ffffff !important;
         }
 
         .dropdown-divider {
-            border-color: #f3b6c7;
+            border-color: blue;
         }
 
         .navbar,
@@ -249,7 +251,7 @@ if ($tem_agenda) {
             left: 50%;
             width: 0;
             height: 2px;
-            background: #ffe0ec;
+            background: blue;
             transition: all .3s ease;
             transform: translateX(-50%);
             border-radius: 10px;
@@ -270,7 +272,7 @@ if ($tem_agenda) {
         }
 
         .logo-mini {
-            filter: drop-shadow(0 4px 6px rgba(255, 79, 139, 0.4));
+            filter: drop-shadow(0 4px 6px blue);
         }
 
         .logo-title {
@@ -301,7 +303,7 @@ if ($tem_agenda) {
 
         .navbar-nav img:hover {
             transform: scale(1.08);
-            box-shadow: 0 0 0 4px rgba(255, 111, 165, 0.35);
+            box-shadow: 0 0 0 4px blue;
         }
 
         .whatsapp {
@@ -337,9 +339,7 @@ if ($tem_agenda) {
             }
         }
 
-        .navbar-nav.d-lg-none {
-            box-shadow: 0 10px 30px rgba(255, 79, 139, 0.25);
-        }
+
 
         .navbar-collapse {
             flex-grow: 0;
@@ -351,7 +351,7 @@ if ($tem_agenda) {
         }
 
         .promo-toggler {
-            background: linear-gradient(135deg, #ff9ab5, #b02a6b);
+            background: blue;
             border: none;
             width: 58px;
             height: 48px;
@@ -360,13 +360,14 @@ if ($tem_agenda) {
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 12px 28px rgba(182, 75, 127, 0.5);
             transition: .4s;
         }
 
         .promo-toggler:hover {
             transform: scale(1.08);
-            box-shadow: 0 16px 40px rgba(176, 42, 107, .7);
+            box-shadow: 0 16px 40px blue;
+            background: black;
+
         }
 
         .promo-toggler .navbar-toggler-icon {
@@ -516,13 +517,13 @@ if ($tem_agenda) {
 
             <img class="logo-mini" src="<?= base_url('uploads\logo/' . $informacao->logo); ?>" alt="Logo">
 
-            <span class="logo-title">Mavih Studio</span>
+            <span class="logo-title"><?= $informacao->nome_salao ?></span>
 
 
             <button class="navbar-toggler promo-toggler position-relative" type="button" data-bs-toggle="collapse"
                 data-bs-target="#menuCliente">
 
-                <span class="navbar-toggler-icon"></span>
+                <i class="bi bi-list text-white " style="font-size: 2rem;"></i>
                 <?php if ($promocao->data != null):?>
                 <?php if ($promocao->data && $url != '/salao-mavih/cliente/promocao/promocao'): ?>
 
@@ -531,14 +532,7 @@ if ($tem_agenda) {
                     <span class="promo-cloud">Tem promoção!</span>
                 </span>
                 <?php endif; ?><?php endif;?>
-
-
-
-
             </button>
-
-
-
         </div>
 
 

@@ -118,7 +118,7 @@ class Configuracao extends CI_Controller
 
         if (!empty($_FILES['foto']['name'])) {
             $config['upload_path'] = './uploads/logo/';
-            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['allowed_types'] = 'jpg|jpeg|png|webp';
             $config['max_size'] = 2048; // 2MB
             $config['encrypt_name'] = true; // gera nome aleatório
 
@@ -145,13 +145,14 @@ class Configuracao extends CI_Controller
         $insert = $this->global_model->update('tela_cliente', $dados, $registroAtual->id);
         if ($insert) {
             $mensag = 'Informações cadastradas com sucesso. Acesse a tela de Clientes e confirme se está tudo certo.';
-            $result = Result::susses('', $mensag);
+            $result = Result::susses(null, $mensag);
         } else {
             $mensag = 'Nenhuma alteração foi detectada. Modifique algum campo para salvar.';
             $result = Result::error($mensag);
         }
 
         $output = $this->crud->response($result->susses, $result->message);
+        ob_clean();
         return $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 

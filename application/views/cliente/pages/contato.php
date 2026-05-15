@@ -12,104 +12,122 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?php $this->load->view('links_paginas/link_cliente_home') ?>
 
     <style>
-        :root {
-            --rosa-principal: #ff4f8b;
-            --rosa-claro: #f8c9d6;
-            --rosa-bg: #fde4ec;
-            --texto-suave: #6f5b63;
-        }
+    :root {
+        --rosa-principal: #ff4f8b;
+        --rosa-claro: #f8c9d6;
+        --rosa-bg: #fde4ec;
+        --texto-suave: #6f5b63;
+    }
 
-        body {
-            background: linear-gradient(180deg, var(--rosa-bg), #fff);
-            font-family: 'Poppins', sans-serif;
-        }
+    :root {
+        --cor-principal: #c59d5f;
+        /* dourado */
+        --cor-secundaria: #000;
+        /* preto */
+        --cor-bg: #000;
+        /* fundo escuro */
+        --cor-card: #1f1f1f;
+        /* cards */
+        --texto: #eaeaea;
+        /* texto claro */
+        --texto-suave: #aaaaaa;
+        /* cinza suave */
+        --blue: blue;
+        --fundo1: #121212;
+        --fundo2: #1c1c1c;
+    }
 
-        h2 {
-            color: var(--rosa-principal);
-            font-family: 'Playfair Display', serif;
-        }
+    body {
+        background: linear-gradient(180deg, var(--fundo1), var(--fundo2));
+        font-family: 'Poppins', sans-serif;
+    }
 
-        .card-contato {
-            background: #fff;
-            border-radius: 28px;
-            padding: 35px;
-            box-shadow: 0 20px 45px rgba(176, 42, 107, .25);
-            border: 1px solid #f4c2d7;
-        }
+    h2 {
+        color: var(--rosa-principal);
+        font-family: 'Playfair Display', serif;
+    }
 
-        .info-item {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-bottom: 18px;
-            color: var(--texto-suave);
-        }
+    .card-contato {
+        background: #fff;
+        border-radius: 28px;
+        padding: 35px;
+        border: 1px solid #f4c2d7;
+    }
 
-        .info-item i {
-            font-size: 1.6rem;
-            color: var(--rosa-principal);
-        }
+    .info-item {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        margin-bottom: 18px;
+        color: var(--texto-suave);
+    }
 
-        .form-control {
-            border-radius: 30px;
-            padding: 14px 20px;
-            border: 1px solid #f4c2d7;
-        }
+    .info-item i {
+        font-size: 1.6rem;
+        color: var(--blue);
+    }
 
-        .form-control:focus {
-            border-color: var(--rosa-principal);
-            box-shadow: 0 0 0 .2rem rgba(255, 79, 139, .25);
-        }
+    .form-control {
+        border-radius: 30px;
+        padding: 14px 20px;
+        border: 1px solid #f4c2d7;
+    }
 
-        .btn-enviar {
-            background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-claro));
-            color: #fff;
-            font-weight: 600;
-            padding: 14px;
-            border-radius: 999px;
-            border: none;
-            transition: .3s;
-        }
+    .form-control:focus {}
 
-        .btn-enviar:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 79, 139, .4);
-        }
+    .btn-enviar {
+        background: linear-gradient(135deg, var(--blue), var(--cor-principal));
+        color: #fff;
+        font-weight: 600;
+        padding: 14px;
+        border-radius: 999px;
+        border: none;
+        transition: .3s;
+    }
 
-        iframe {
-            border-radius: 22px;
-            box-shadow: 0 12px 30px rgba(176, 42, 107, .25);
-        }
+    .btn-enviar:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px var(--blue);
+        color: var(--texto)
+    }
 
-        .maps {
+    iframe {
+        border-radius: 22px;
+    }
 
-            color: inherit;
-            text-decoration: none;
-        }
-.maps:hover{
+    .maps {
 
-            color: #f4c2d7;
-            
-        }
-        .zap {
-            color: inherit;
-            text-decoration: none;
-        }
-        .zap:hover{
+        color: inherit;
+        text-decoration: none;
+    }
 
-            color: #f4c2d7;
-            
-        }
-          .ligar {
-            color: inherit;
-            text-decoration: none;
-        }
-        
-        .ligar:hover{
+    .maps:hover {
 
-            color: #f4c2d7;
-            
-        }
+        color: #f4c2d7;
+
+    }
+
+    .zap {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .zap:hover {
+
+        color: #f4c2d7;
+
+    }
+
+    .ligar {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .ligar:hover {
+
+        color: #f4c2d7;
+
+    }
     </style>
 </head>
 
@@ -126,7 +144,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="col-lg-5">
                 <div class="card-contato">
 
-                    <h4 class="fw-bold mb-4 cor">Salão Mavih</h4>
+                    <h4 class="fw-bold mb-4 cor"><?= $tela_cliente->nome_salao ?></h4>
 
                     <div class="info-item">
                         <i class="bi bi-geo-alt-fill"></i>
@@ -149,7 +167,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="info-item">
                         <i class="bi bi-clock-fill"></i>
                         <span>
-                           Horarios disponiveis na tela de agendar serviços
+                            Horarios disponiveis na tela de agendar serviços
                         </span>
                     </div>
 
@@ -163,11 +181,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <h4 class="fw-bold mb-3 cor">Entre em Contato</h4>
 
                     <p class="text-muted mb-4">
-                        Escolha a melhor forma de falar com a gente 💖
+                        Escolha a melhor forma de falar com a gente
                         Estamos prontas para te atender!
                     </p>
 
-                    <a href="https://wa.me/+5519993250801?text=Ol%C3%A1%20vim%20atravez%20do%20aplicativo%20queria%20tirar%20duvidas!" target="_blank" class="btn btn-enviar w-100 mb-3">
+                    <a href="https://wa.me/+5519993250801?text=Ol%C3%A1%20vim%20atravez%20do%20aplicativo%20queria%20tirar%20duvidas!"
+                        target="_blank" class="btn btn-enviar w-100 mb-3">
                         <i class="bi bi-whatsapp me-2"></i>
                         Falar no WhatsApp
                     </a>
@@ -178,7 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         Agendar um Horário
                     </a>
 
-                    <a  href="tel:19993250801" class="btn btn-outline-secondary w-100 mb-3 rounded-pill">
+                    <a href="tel:19993250801" class="btn btn-outline-secondary w-100 mb-3 rounded-pill">
                         <i class="bi bi-telephone-fill me-2"></i>
                         Ligar Agora
                     </a>
@@ -197,8 +216,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <!-- MAPA -->
         <div class="mt-5">
-            <iframe src="https://maps.google.com/maps?q=Rua Cinco de Junho, 68 - Chácara Lago&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%"
-                height="320" allowfullscreen="" loading="lazy">
+            <iframe
+                src="https://maps.google.com/maps?q=Rua Cinco de Junho, 68 - Chácara Lago&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                width="100%" height="320" allowfullscreen="" loading="lazy">
             </iframe>
         </div>
 

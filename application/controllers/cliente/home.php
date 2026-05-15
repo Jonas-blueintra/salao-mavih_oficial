@@ -13,6 +13,7 @@ class home extends CI_Controller {
 	 {$data['comentario'] = $this->crud->UltimasAvaliacoes();
         $data['mostrar_serviços'] =  $this->Servicos_model->servicos_vs_cliente();
 		$data['equipe'] = $this->global_model->buscar_tabela_interia('equipe');
+		$data['informacoes'] = $this->global_model->get('tela_cliente', 1, true);
 
 		 $this->load->view('cliente/pages/cliente' , $data);
 	 }

@@ -49,14 +49,12 @@ class Agendar extends CI_Controller
         header('Content-Type: application/json');
 
         $id_dia = $this->input->get("id_dia");
-        $duracaoStr = $this->input->get("duracao"); // agora recebe "01:20"
+        $duracaoStr = $this->input->get("duracao");
 
         if (!$id_dia || !$duracaoStr) {
 
             return Result::error("Parâmetros inválidos");
         }
-
-        // Converter formato "HH:MM" para minutos
         if (strpos($duracaoStr, ":") !== false) {
             list($h, $m) = explode(":", $duracaoStr);
             $duracao = ($h * 60) + $m; // total em minutos
@@ -73,17 +71,62 @@ class Agendar extends CI_Controller
             return;
         }
 
-        $data = $dia->data;
-        $abre = strtotime($data . " " . $dia->abre);
-        $fecha = strtotime($data . " " . $dia->fecha);
-
-        $intervalo = 40 * 60; // 40 minutos
+      
 
         // Buscar horários ocupados daquele dia COM duração do serviço
 
 
         $horariosLivres = [];
+if ($dia->data == date("Y-m-d")) {
+      $data = $dia->data;
+        $abre = strtotime($data . " " . date("H:i"));
+        $fecha = strtotime($data . " " . $dia->fecha);
 
+        $intervalo = 40 * 60; // 40 minutos
+  for ($h = $abre; $h + ($duracao * 60) <= $fecha; ) {
+
+            $inicio_novo = $h;
+            $fim_novo = $h + ($duracao * 60);
+
+            // Verificar conflitos corretamente
+            $this->db->where("data", $data);
+
+            // só horários que NÃO estão cancelados
+            $this->db->where("status !=", "cancelado");
+
+            $this->db->where("
+         (
+           STR_TO_DATE(hora_inicio, '%H:%i') < STR_TO_DATE('" . date("H:i", $fim_novo) . "', '%H:%i')
+           AND
+           STR_TO_DATE(hora_fim, '%H:%i') > STR_TO_DATE('" . date("H:i", $inicio_novo) . "', '%H:%i')
+         )
+         ", null, false);
+
+
+            $ocupado = $this->db->get("agenda")->row();
+
+            if ($ocupado) {
+
+                // pula para o final do horário ocupado
+                $novo_horario = strtotime($data . " " . $ocupado->hora_fim);
+                $h = $novo_horario;
+                continue;
+            }
+
+            // Se não tiver conflito, adiciona horário
+            $horariosLivres[] =
+                date("H:i", $inicio_novo)
+                . " às "
+                . date("H:i", $fim_novo);
+
+            $h = $fim_novo;
+        }  
+}else{
+      $data = $dia->data;
+        $abre = strtotime($data . " " . $dia->abre);
+        $fecha = strtotime($data . " " . $dia->fecha);
+
+        $intervalo = 40 * 60; // 40 minutos
         for ($h = $abre; $h + ($duracao * 60) <= $fecha; ) {
 
             $inicio_novo = $h;
@@ -122,6 +165,7 @@ class Agendar extends CI_Controller
 
             $h = $fim_novo;
         }
+}
         ob_clean();
         echo json_encode([
             "data" => $data,
